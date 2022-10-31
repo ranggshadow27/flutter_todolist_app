@@ -8,7 +8,7 @@ class DBProvider {
 
   static final DBProvider dataBase = DBProvider._();
 
-  late Database _database;
+  static Database _database;
 
   Future<Database> get database async {
     if (_database != null) {
@@ -35,5 +35,16 @@ class DBProvider {
     final db = await database;
     db.insert("tasks", newTask.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
+  }
+
+  Future<dynamic> getTask() async {
+    final db = await database;
+    var res = await db.query("tasks");
+    if (res.length == 0) {
+      return Null;
+    } else {
+      var resultMap = res.toList();
+      return resultMap.isNotEmpty ? resultMap : Null;
+    }
   }
 }

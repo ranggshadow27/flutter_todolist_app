@@ -1,11 +1,11 @@
 class Task {
   final int id;
-  final String? task;
-  final DateTime? dateTime;
+  final String task;
+  final DateTime dateTime;
 
   Task({
     this.dateTime,
-    required this.id,
+    this.id,
     this.task,
   });
 
